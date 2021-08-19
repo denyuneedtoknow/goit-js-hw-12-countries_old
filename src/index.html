@@ -17,7 +17,18 @@
   <body>
     <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
     <!-- <include src="./partials/example.html"></include> -->
-<div id=root></div>
+
+<form>
+  <div>
+    <label for="countryName">Enter country: </label>
+    <input type="text" id="countryName" name="name">
+  </div>
+  <div>
+    <button id=btnRequest>Submit</button>
+  </div>
+</form>
+<div id=root>
+
     <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
     <script src="./index.js"></script>
     <script src="./fetchCountries.js"></script>

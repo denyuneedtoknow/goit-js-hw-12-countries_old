@@ -124,7 +124,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 //     .then(response => response.json())
 //     .then(data => createGalery(data.hits))
 //     .catch(err => console.log('err'));
-const root = document.querySelector('#root'); // function createGalery(arr) {
+// function createGalery(arr) {
 //     for (let el of arr) {
 //         createImage(el);
 //     }
@@ -134,13 +134,41 @@ const root = document.querySelector('#root'); // function createGalery(arr) {
 //     img.src = obj.webformatURL;
 //     root.appendChild(img);
 // }
+const root = document.querySelector('#root');
+const btnRequest = document.querySelector('#btnRequest');
+const flag = document.querySelector('#flag');
+const addressOfData = 'https://restcountries.eu/rest/v2/name/';
+const header = document.querySelector('#nameReveal');
 
-const SOURSE = 'https://restcountries.eu/rest/v2/name/usa';
-fetch(SOURSE).then(response => {
-  return response.json();
-}).then(array => {
-  return array[0];
-});
+function createImage(array) {
+  header.innerHTML = array[0].capital;
+  const flagSrc = array[0].flag;
+  const img = document.createElement('img');
+  img.src = flagSrc;
+  const capital = document.createElement('h1');
+  console.log(capital);
+  root.appendChild(img);
+  root.appendChild(capital);
+}
+
+function fetchCountry(e) {
+  e.preventDefault();
+  const input = String(document.querySelector('#countryName').value);
+  const requestAddress = `${addressOfData}${input}`;
+  fetch(requestAddress).then(response => {
+    return response.json();
+  }).then(array => {
+    const flagSrc = array[0].flag;
+    const img = document.createElement('img');
+    img.src = flagSrc;
+    const capital = document.createElement('h1');
+    capital.innerText = array[0].capital;
+    root.appendChild(capital);
+    root.appendChild(img);
+  }).catch(err => console.log('err'));
+}
+
+btnRequest.addEventListener('click', fetchCountry);
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -169,7 +197,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55691" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58805" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
