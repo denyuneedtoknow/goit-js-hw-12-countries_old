@@ -1,20 +1,3 @@
-// fetch(
-//     'https://pixabay.com/api/?key=22968833-cf9b798f42870513c2372fa03&image_type=illustration&orientation=horizontal',
-// )
-//     .then(response => response.json())
-//     .then(data => createGalery(data.hits))
-//     .catch(err => console.log('err'));
-
-// function createGalery(arr) {
-//     for (let el of arr) {
-//         createImage(el);
-//     }
-// }
-// function createImage(obj) {
-//     const img = document.createElement('img');
-//     img.src = obj.webformatURL;
-//     root.appendChild(img);
-// }
 
 const root = document.querySelector('#root');
 const btnRequest = document.querySelector('#btnRequest')
@@ -30,7 +13,6 @@ function createImage(array) {
     const img = document.createElement('img');
     img.src = flagSrc;
     const capital = document.createElement('h1')
-    console.log(capital);
     root.appendChild(img);
     root.appendChild(capital);
 }
@@ -45,16 +27,19 @@ function fetchCountry(e) {
     fetch(requestAddress).then(response => {
         return response.json()
     }).then(array => {
+        console.log(array);
+        let i = array.length
+        console.log(i);
+       
+    const flagSrc = array[0].flag
+    const img = document.createElement('img');
+    img.src = flagSrc;
+    const capital = document.createElement('h1')
+    capital.innerText = array[0].capital
+    root.appendChild(capital);
+    root.appendChild(img);
 
-        const flagSrc = array[0].flag
-        const img = document.createElement('img');
-        img.src = flagSrc;
-        const capital = document.createElement('h1')
-        capital.innerText = array[0].capital
-        root.appendChild(capital);
-        root.appendChild(img);
-
-    }).catch(err => console.log('err'));
+}).catch (err => console.log('err'));
 
 }
 
